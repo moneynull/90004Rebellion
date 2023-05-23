@@ -10,10 +10,10 @@ public class Params {
      * Comments for each of these parameters can be found further below
      */
     private enum DefaultValues {
-        N_TURNS(100),
+        N_TURNS(20),
         MOVE_TOWARDS_REBELS_EXT(false),
         PRINT_TO_STDOUT(true),
-        SAVE_TO_CSV(false),
+        SAVE_TO_CSV(true),
         PRETTY_PRINT(true),
         PRETTY_PRINT_SPEED(2000),
         GRID_SIZE(40),

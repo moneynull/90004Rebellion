@@ -57,7 +57,7 @@ public class Logger {
     public void exportDataToCSV() {
         try {
             String time = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS).toString();
-            FileWriter myWriter = new FileWriter("ModelData_" + time + ".csv");
+            FileWriter myWriter = new FileWriter("ModelData_" + ".csv");
             myWriter.write(dataToString());
             myWriter.close();
             System.out.println("Model has been run. Run data saved to csv file.");
