@@ -77,7 +77,7 @@ public class MapUI extends JFrame {
         JTextField t8=new JTextField(String.valueOf(monitor.activeNum),5);
         t8.setEnabled(false);
 
-        JLabel l9=new JLabel("speed");
+        JLabel l9=new JLabel("interval/ms");
         JTextField t9=new JTextField(String.valueOf(RebelParam.UI_UPDATE_RATE),5);
 
         buttonPanel.add(l9);
