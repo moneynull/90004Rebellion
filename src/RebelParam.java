@@ -3,7 +3,7 @@ public class RebelParam {
      * system param
      */
     public static int MAX_TURN=50;
-    public static int UI_UPDATE_RATE=500;
+    public static int UI_UPDATE_RATE=100;
     public static int MAP_COL=40;
     public static int MAP_ROW=40;
 

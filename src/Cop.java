@@ -13,7 +13,10 @@ public class Cop extends Person{
         Random random=new Random();
         //find rebel cells
         List<Person> rebelList=RebelMap.personList.stream()
-                .filter(p->p.getPersonStatus().equals(RebelParam.AGENT_ACTIVE))
+                .filter(p->(
+                        p.getPersonStatus().equals(RebelParam.AGENT_ACTIVE)&&
+                                this.getCell().getCellsInVision().contains(p.getCell())
+                ))
                 .collect(Collectors.toList());
 
         //find rebel agents based on cells
@@ -26,7 +29,10 @@ public class Cop extends Person{
         Random random=new Random();
         //change agent status
         agent.setPersonStatus(RebelParam.AGENT_JAILED);
-        agent.setJailTerm(random.nextInt(RebelParam.MAX_JAIL_TERM));
+        if(RebelParam.MAX_JAIL_TERM!=0)
+            agent.setJailTerm(random.nextInt(RebelParam.MAX_JAIL_TERM));
+        else
+            agent.setJailTerm(0);
         //reset jailed agent cell
         this.getCell().setPersonStatus(RebelParam.EMPTY_SLOT);
         this.setCell(agent.getCell());

@@ -124,6 +124,9 @@ public class MapUI extends JFrame {
                 RebelParam.MAX_JAIL_TERM=Integer.parseInt(t5.getText());
                 RebelParam.MOVEMENT=buttonGroup.getSelection().isSelected();
                 RebelParam.UI_UPDATE_RATE=Integer.parseInt(t9.getText());
+                t6.setText(String.valueOf(0));
+                t7.setText(String.valueOf(0));
+                t8.setText(String.valueOf(0));
 
                 if(RebelParam.INITIAL_AGENT_DENSITY + RebelParam.INITIAL_COP_DENSITY > 1)
                     JOptionPane.showConfirmDialog(

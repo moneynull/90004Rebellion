@@ -6,7 +6,7 @@ public class Agent extends Person{
     private final double perceivedHardship;
     private final double riskAversion;
 
-    private int jailTerm = 0;
+    private int jailTerm;
 
     public int getJailTerm() {
         return jailTerm;
@@ -24,9 +24,9 @@ public class Agent extends Person{
         this.jailTerm = 0;
     }
 
-    public void jailByTurn(int turn){
+    public void jailByTurn(){
         if(this.jailTerm>0){
-            this.jailTerm-=turn;
+            this.jailTerm-=1;
             if(this.jailTerm==0){
                 this.setPersonStatus(RebelParam.AGENT_QUIET);
                 this.getCell().setPersonStatus(this.getPersonStatus());

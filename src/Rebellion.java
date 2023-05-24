@@ -22,12 +22,15 @@ public class Rebellion {
 
     public static void modelThread(){
         if(RebelParam.MOVEMENT)
-            RebelMap.personList.forEach(Person::randomMove);
+            RebelMap.personList.forEach(p->{
+                if(!p.getPersonStatus().equals(RebelParam.AGENT_JAILED))
+                    p.randomMove();
+            });
         else
-            RebelMap.personList.forEach(p->{if(p instanceof Cop)p.randomMove();});
-        //todo separate or not?
+            RebelMap.personList.forEach(p->{ if(p instanceof Cop) p.randomMove();});
+
         RebelMap.personList.forEach(p->{if(p instanceof Agent)((Agent) p).determineBehaviour();});
         RebelMap.personList.forEach(p->{if(p instanceof Cop)((Cop) p).enforce();});
-        RebelMap.personList.forEach(p->{if(p instanceof Agent)((Agent) p).jailByTurn(1);});
+        RebelMap.personList.forEach(p->{if(p instanceof Agent)((Agent) p).jailByTurn();});
     }
 }
