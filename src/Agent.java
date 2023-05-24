@@ -1,9 +1,3 @@
-package myRebel;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import static java.lang.Math.exp;
 import static java.lang.Math.floor;
 

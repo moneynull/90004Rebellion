@@ -1,9 +1,6 @@
-package myRebel;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public class RebelMap {
     public static Cell[][] map=new Cell[RebelParam.MAP_ROW][RebelParam.MAP_COL];

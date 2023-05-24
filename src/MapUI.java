@@ -1,5 +1,3 @@
-package myRebel;
-
 import javax.swing.*;
 import java.awt.*;
 

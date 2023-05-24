@@ -1,5 +1,3 @@
-package myRebel;
-
 public class RebelParam {
     /**
      * system param
