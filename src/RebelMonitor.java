@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -8,12 +9,21 @@ public class RebelMonitor {
     private List<Integer> activeData=new ArrayList<>();
     private List<Integer> quietData=new ArrayList<>();
     private List<Integer> jailedData=new ArrayList<>();
+    public int activeNum=0;
+    public int quietNum=0;
+    public int jailedNum=0;
     public final static String COL_HEADERS = "Turn,Active,Quiet,Jailed";
 
+    public void initMonitor(){
+        activeData=new ArrayList<>();
+        quietData=new ArrayList<>();
+        jailedData=new ArrayList<>();
+    }
+
     public void agentsMonitor(List<Person> agents) {
-        int activeNum = 0;
-        int quietNum = 0;
-        int jailedNum = 0;
+        activeNum = 0;
+        quietNum = 0;
+        jailedNum = 0;
         for (Person agent : agents) {
             if (agent.getPersonStatus().equals(RebelParam.AGENT_ACTIVE))
                 activeNum += 1;
@@ -35,9 +45,19 @@ public class RebelMonitor {
             FileWriter myWriter = new FileWriter("ModelData_"+time+ ".csv");
             myWriter.write(dataToString(turn));
             myWriter.close();
-            System.out.println("Model has been run. Run data saved to csv file.");
+            JOptionPane.showConfirmDialog(
+                    null,
+                    "Model has been run. Run data saved to csv file.",
+                    "Success",
+                    JOptionPane.OK_CANCEL_OPTION
+            );
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            JOptionPane.showConfirmDialog(
+                    null,
+                    "Save to csv file failed.",
+                    "Error",
+                    JOptionPane.OK_CANCEL_OPTION
+            );
             e.printStackTrace();
         }
     }

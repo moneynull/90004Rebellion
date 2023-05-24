@@ -12,6 +12,14 @@ public class RebelMap {
     public static int copNum=(int)Math.floor(
             RebelParam.INITIAL_COP_DENSITY*(RebelParam.MAP_ROW* RebelParam.MAP_COL));
 
+    public static void cleanMap(){
+        map=new Cell[RebelParam.MAP_ROW][RebelParam.MAP_COL];
+        personList=new ArrayList<>();
+        cellList=new ArrayList<>();
+        agentNum=(int)Math.floor(RebelParam.INITIAL_AGENT_DENSITY*(RebelParam.MAP_ROW* RebelParam.MAP_COL));
+        copNum=(int)Math.floor(RebelParam.INITIAL_COP_DENSITY*(RebelParam.MAP_ROW* RebelParam.MAP_COL));
+    }
+
     public static void initialMap(){
         //initial cell grid
         for(int i=0;i<map.length;i++){

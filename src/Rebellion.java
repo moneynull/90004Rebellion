@@ -1,17 +1,13 @@
 public class Rebellion {
-    public static RebelMonitor monitor=new RebelMonitor();
     public static void main(String[] args) throws Exception {
-        initialModel();
+        //initialModel();
         MapUI mapUI=new MapUI();
         //runModel();
-        monitor.exportDataToCSV(mapUI.getRunTurn());
+        //monitor.exportDataToCSV(mapUI.getRunTurn());
     }
 
-    public static void initialModel() throws Exception {
-        // check densities valid
-        if (RebelParam.INITIAL_AGENT_DENSITY + RebelParam.INITIAL_COP_DENSITY > 1) {
-            throw new Exception("Sum of INITIAL-COP-DENSITY and INITIAL-AGENT-DENSITY should be less than 1.");
-        }
+    public static void initialModel(){
+        RebelMap.cleanMap();
         RebelMap.initialMap();
         RebelMap.initialCellList();
         RebelMap.initialAgent();
@@ -25,7 +21,6 @@ public class Rebellion {
     }
 
     public static void modelThread(){
-        monitor.agentsMonitor(RebelMap.personList);
         if(RebelParam.MOVEMENT)
             RebelMap.personList.forEach(Person::randomMove);
         else

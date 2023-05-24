@@ -37,14 +37,11 @@ public class Agent extends Person{
 
     public void determineBehaviour(){
         if(jailTerm<=0){
-            if(grievance()-riskAversion*arrestProbability()>RebelParam.THRESHOLD)
+            if(grievance()-riskAversion*arrestProbability()>RebelParam.THRESHOLD){
                 this.setPersonStatus(RebelParam.AGENT_ACTIVE);
-            else
-                this.setPersonStatus(RebelParam.AGENT_QUIET);
-
-            this.getCell().setPersonStatus(this.getPersonStatus());
+                this.getCell().setPersonStatus(this.getPersonStatus());
+            }
         }
-
     }
 
     private double grievance(){
@@ -62,6 +59,9 @@ public class Agent extends Person{
                 rebelsInVision += 1;
             }
         }
+
+        if(rebelsInVision==0) rebelsInVision=1;
+        if(copsInVision==0) copsInVision=1;
 
         // calculate estimated arrest probability
         return 1 - exp(-RebelParam.K * floor(copsInVision / rebelsInVision));
