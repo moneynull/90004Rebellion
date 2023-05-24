@@ -5,27 +5,24 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class Cop {
-    private Cell cell;
-    private String personStatus;
+public class Cop extends Person{
+
+    public Cop() {
+        super();
+        this.setPersonStatus(RebelParam.COP);
+    }
 
     public void enforce(){
         Random random=new Random();
         //find rebel cells
-        List<Cell> cellList=cell.getCellsInVision();
-        cellList=cellList.stream()
-                .filter(c-> c.getPersonStatus().equals(RebelParam.AGENT_ACTIVE))
+        List<Person> rebelList=RebelMap.personList.stream()
+                .filter(p->p.getPersonStatus().equals(RebelParam.AGENT_ACTIVE))
                 .collect(Collectors.toList());
 
         //find rebel agents based on cells
-        if(cellList.size()>0){
-            List<Agent> rebelList=new ArrayList<>();
-            for (Cell cell:cellList){
-                rebelList.add(RebelMap.agentList.stream().filter(a-> a.getCell()==cell).findAny().get());
-            }
+        if(rebelList.size()>0)
             //jail one random agent
-            jailAgent((rebelList.get(random.nextInt(rebelList.size()))));
-        }
+            jailAgent((Agent) rebelList.get(random.nextInt(rebelList.size())));
     }
 
     private void jailAgent(Agent agent){
@@ -34,9 +31,9 @@ public class Cop {
         agent.setPersonStatus(RebelParam.AGENT_JAILED);
         agent.setJailTerm(random.nextInt(RebelParam.MAX_JAIL_TERM));
         //reset jailed agent cell
-        cell.setPersonStatus(RebelParam.EMPTY_SLOT);
-        cell=agent.getCell();
-        cell.setPersonStatus(personStatus);
+        this.getCell().setPersonStatus(RebelParam.EMPTY_SLOT);
+        this.setCell(agent.getCell());
+        this.getCell().setPersonStatus(this.getPersonStatus());
     }
 
 }
