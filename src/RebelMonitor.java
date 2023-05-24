@@ -27,13 +27,13 @@ public class RebelMonitor {
         jailedData.add(jailedNum);
     }
 
-    public void exportDataToCSV() {
+    public void exportDataToCSV(int turn) {
         try {
             String time = ""+LocalDateTime.now().getHour()+"-"
                     +LocalDateTime.now().getMinute()+"-"
                     +LocalDateTime.now().getSecond();
             FileWriter myWriter = new FileWriter("ModelData_"+time+ ".csv");
-            myWriter.write(dataToString());
+            myWriter.write(dataToString(turn));
             myWriter.close();
             System.out.println("Model has been run. Run data saved to csv file.");
         } catch (IOException e) {
@@ -42,9 +42,9 @@ public class RebelMonitor {
         }
     }
 
-    public String dataToString() {
+    public String dataToString(int turn) {
         StringBuilder out = new StringBuilder(COL_HEADERS + "\n");
-        for(int i=0;i<RebelParam.MAX_TURN;i++) {
+        for(int i=0;i<turn;i++) {
             out.append(dataAtTurn(i)).append("\n");
         }
         return out.toString();
