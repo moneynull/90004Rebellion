@@ -24,10 +24,12 @@ public class Rebellion {
 
     public static void modelThread(){
         RebelMap.personList.forEach(p->{
-            if(!p.getPersonStatus().equals(RebelParam.AGENT_JAILED)){
-                if(RebelParam.MOVEMENT) p.randomMove();
-                else if(p instanceof Cop) p.randomMove();
+            if(RebelParam.MOVEMENT){
+                if(!p.getPersonStatus().equals(RebelParam.AGENT_JAILED)){
+                    p.randomMove();
+                }
             }
+            else if(p instanceof Cop) p.randomMove();
             if(p instanceof Agent)((Agent) p).determineBehaviour();
             if(p instanceof Cop)((Cop) p).enforce();
             if(p instanceof Agent)((Agent) p).jailByTurn();
