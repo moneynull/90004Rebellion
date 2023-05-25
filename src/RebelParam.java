@@ -13,7 +13,7 @@ public class RebelParam {
     public static double INITIAL_COP_DENSITY=0.04;
     public static double INITIAL_AGENT_DENSITY=0.700;
     public static double GOVERNMENT_LEGITIMACY=0.82;
-    public static int MAX_JAIL_TERM=10;
+    public static int MAX_JAIL_TERM=30;
     public static int VISION=7;
     public static boolean MOVEMENT=true;
 

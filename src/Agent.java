@@ -44,6 +44,11 @@ public class Agent extends Person{
         }
     }
 
+    /**
+     * todo
+     * If near rebel basement, increase perceived hardship
+     * @return
+     */
     private double grievance(){
         return perceivedHardship * (1 - governmentLegitimacy);
     }
@@ -59,6 +64,9 @@ public class Agent extends Person{
                 rebelsInVision += 1;
             }
         }
+
+        if(copsInVision==0) copsInVision=1;
+        //if(rebelsInVision==0) rebelsInVision=1600;
 
         // calculate estimated arrest probability
         return 1 - exp(-RebelParam.K * floor(copsInVision / rebelsInVision));

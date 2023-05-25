@@ -1,12 +1,7 @@
-import javafx.scene.control.RadioButton;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Locale;
 
 public class MapUI extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -114,50 +109,39 @@ public class MapUI extends JFrame {
         frame.add(grid);
         frame.pack();
 
-        b1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                RebelParam.INITIAL_COP_DENSITY=Double.parseDouble(t1.getText());
-                RebelParam.INITIAL_AGENT_DENSITY=Double.parseDouble(t2.getText());
-                RebelParam.VISION=Integer.parseInt(t3.getText());
-                RebelParam.GOVERNMENT_LEGITIMACY=Double.parseDouble(t4.getText());
-                RebelParam.MAX_JAIL_TERM=Integer.parseInt(t5.getText());
-                RebelParam.MOVEMENT=buttonGroup.getSelection().isSelected();
-                RebelParam.UI_UPDATE_RATE=Integer.parseInt(t9.getText());
-                t6.setText(String.valueOf(0));
-                t7.setText(String.valueOf(0));
-                t8.setText(String.valueOf(0));
+        b1.addActionListener(e -> {
+            RebelParam.INITIAL_COP_DENSITY=Double.parseDouble(t1.getText());
+            RebelParam.INITIAL_AGENT_DENSITY=Double.parseDouble(t2.getText());
+            RebelParam.VISION=Integer.parseInt(t3.getText());
+            RebelParam.GOVERNMENT_LEGITIMACY=Double.parseDouble(t4.getText());
+            RebelParam.MAX_JAIL_TERM=Integer.parseInt(t5.getText());
+            RebelParam.MOVEMENT=buttonGroup.getSelection().isSelected();
+            RebelParam.UI_UPDATE_RATE=Integer.parseInt(t9.getText());
+            t6.setText(String.valueOf(0));
+            t7.setText(String.valueOf(0));
+            t8.setText(String.valueOf(0));
 
-                if(RebelParam.INITIAL_AGENT_DENSITY + RebelParam.INITIAL_COP_DENSITY > 1)
-                    JOptionPane.showConfirmDialog(
-                            null,
-                            "Sum of INITIAL-COP-DENSITY and INITIAL-AGENT-DENSITY should be less than 1.",
-                            "Error",
-                            JOptionPane.OK_CANCEL_OPTION
-                    );
-                else{
-                    Rebellion.initialModel();
-                    monitor.initMonitor();
-                    runTurn=0;
-                    paintMap(grid);
-                }
-
+            if(RebelParam.INITIAL_AGENT_DENSITY + RebelParam.INITIAL_COP_DENSITY > 1)
+                JOptionPane.showConfirmDialog(
+                        null,
+                        "Sum of INITIAL-COP-DENSITY and INITIAL-AGENT-DENSITY should be less than 1.",
+                        "Error",
+                        JOptionPane.OK_CANCEL_OPTION
+                );
+            else{
+                Rebellion.initialModel();
+                monitor.initMonitor();
+                runTurn=0;
+                paintMap(grid);
             }
+
         });
 
-        b2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                go=!go;
-            }
-        });
+        b2.addActionListener(e -> go=!go);
 
-        b4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                go = false;
-                monitor.exportDataToCSV(runTurn);
-            }
+        b4.addActionListener(e -> {
+            go = false;
+            monitor.exportDataToCSV(runTurn);
         });
 
 
