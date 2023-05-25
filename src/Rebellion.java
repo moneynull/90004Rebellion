@@ -35,10 +35,13 @@ public class Rebellion {
             if(p instanceof Agent)((Agent) p).jailByTurn();
 
         });
-//        RebelMap.personList.forEach(Person::randomMove);
-//        RebelMap.personList.forEach(p->{if(p instanceof Agent)((Agent) p).determineBehaviour();});
-//        RebelMap.personList.forEach(p->{if(p instanceof Cop)((Cop) p).enforce();});
-//        RebelMap.personList.forEach(p->{if(p instanceof Agent)((Agent) p).jailByTurn();});
+
+        RebelMap.personList.forEach(p->{
+            p.getCell().setHasJailed(
+                    p.getPersonStatus().equals(RebelParam.AGENT_JAILED) &&
+                            p.getCell().getPersonStatus().equals(RebelParam.EMPTY_SLOT));
+        });
         Collections.shuffle(RebelMap.personList);
+
     }
 }

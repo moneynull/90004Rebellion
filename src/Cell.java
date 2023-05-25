@@ -6,16 +6,9 @@ public class Cell {
     private final int cellX;
     private final int cellY;
     private String personStatus;
+    private boolean hasJailed;
 
     private List<Cell> cellsInVision;
-
-    public int getCellX() {
-        return cellX;
-    }
-
-    public int getCellY() {
-        return cellY;
-    }
 
     public List<Cell> getCellsInVision() {
         return cellsInVision;
@@ -33,11 +26,20 @@ public class Cell {
         this.personStatus = personStatus;
     }
 
+    public boolean isHasJailed() {
+        return hasJailed;
+    }
+
+    public void setHasJailed(boolean hasJailed) {
+        this.hasJailed = hasJailed;
+    }
+
     public Cell(int cellX, int cellY, String personStatus) {
         this.cellX = cellX;
         this.cellY = cellY;
         this.personStatus = personStatus;
         this.cellsInVision = new ArrayList<>();
+        this.hasJailed=false;
     }
 
 
@@ -75,12 +77,4 @@ public class Cell {
         }
     }
 
-    @Override
-    public String toString() {
-        return "Cell{" +
-                "cellX=" + cellX +
-                ", cellY=" + cellY +
-                ", personStatus='" + personStatus + '\'' +
-                '}';
-    }
 }

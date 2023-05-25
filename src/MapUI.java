@@ -131,7 +131,6 @@ public class MapUI extends JFrame {
                 );
             else{
                 Rebellion.initialModel();
-                System.out.println(RebelParam.GOVERNMENT_LEGITIMACY);
                 monitor.initMonitor();
                 runTurn=0;
                 paintMap(grid);
@@ -141,7 +140,6 @@ public class MapUI extends JFrame {
 
         b2.addActionListener(e -> {
             go=!go;
-            System.out.println(RebelParam.GOVERNMENT_LEGITIMACY);
         });
 
         b4.addActionListener(e -> {
@@ -194,10 +192,10 @@ public class MapUI extends JFrame {
                     x.setBackground(Color.GREEN);
                 if (cellStatus.equals(RebelParam.AGENT_ACTIVE))
                     x.setBackground(Color.RED);
-                if (cellStatus.equals(RebelParam.AGENT_JAILED))
-                    x.setBackground(Color.BLACK);
                 if (cellStatus.equals(RebelParam.EMPTY_SLOT))
                     x.setBackground(Color.GRAY);
+                if (RebelMap.map[i][j].isHasJailed())
+                    x.setBackground(Color.BLACK);
                 grid.add(x);
             }
         }
