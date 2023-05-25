@@ -26,17 +26,19 @@ public class Cop extends Person{
     }
 
     private void jailAgent(Agent agent){
-        Random random=new Random();
-        //change agent status
-        agent.setPersonStatus(RebelParam.AGENT_JAILED);
-        if(RebelParam.MAX_JAIL_TERM!=0)
+        if(RebelParam.MAX_JAIL_TERM!=0){
+            Random random=new Random();
+            //change agent status
+            agent.setPersonStatus(RebelParam.AGENT_JAILED);
+
             agent.setJailTerm(random.nextInt(RebelParam.MAX_JAIL_TERM));
-        else
-            agent.setJailTerm(0);
-        //reset jailed agent cell
-        this.getCell().setPersonStatus(RebelParam.EMPTY_SLOT);
-        this.setCell(agent.getCell());
-        this.getCell().setPersonStatus(this.getPersonStatus());
+
+            //reset jailed agent cell
+            this.getCell().setPersonStatus(RebelParam.EMPTY_SLOT);
+            this.setCell(agent.getCell());
+            this.getCell().setPersonStatus(this.getPersonStatus());
+        }
+
     }
 
 }

@@ -195,8 +195,7 @@ public class MapUI extends JFrame {
         for (int i = 0; i < RebelParam.MAP_COL; i++) {
             for (int j = 0; j < RebelParam.MAP_ROW; j++) {
                 String cellStatus = RebelMap.map[i][j].getPersonStatus();
-                String str = cellStatus.substring(0, 0).toUpperCase(Locale.ROOT);
-                JLabel x = new JLabel(str);
+                JLabel x = new JLabel();
                 x.setOpaque(true);
                 x.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                 if (cellStatus.equals(RebelParam.COP))

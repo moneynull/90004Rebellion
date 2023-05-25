@@ -60,9 +60,6 @@ public class Agent extends Person{
             }
         }
 
-        if(rebelsInVision==0) rebelsInVision=1;
-        if(copsInVision==0) copsInVision=1;
-
         // calculate estimated arrest probability
         return 1 - exp(-RebelParam.K * floor(copsInVision / rebelsInVision));
     }

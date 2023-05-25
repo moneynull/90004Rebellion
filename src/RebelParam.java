@@ -10,9 +10,9 @@ public class RebelParam {
     /**
      * model param
      */
-    public static double INITIAL_COP_DENSITY=0.100;
-    public static double INITIAL_AGENT_DENSITY=0.500;
-    public static double GOVERNMENT_LEGITIMACY=0.15;
+    public static double INITIAL_COP_DENSITY=0.04;
+    public static double INITIAL_AGENT_DENSITY=0.700;
+    public static double GOVERNMENT_LEGITIMACY=0.82;
     public static int MAX_JAIL_TERM=10;
     public static int VISION=7;
     public static boolean MOVEMENT=true;
