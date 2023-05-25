@@ -28,7 +28,7 @@ public class Person {
                 .collect(Collectors.toList());
 
         //move to a random empty cell
-        if(emptyCells.size()>0){
+        if(emptyCells.size()>0 && !this.getPersonStatus().equals(RebelParam.AGENT_JAILED)){
             Random random=new Random();
             Cell newLoc=emptyCells.get(random.nextInt(emptyCells.size()));
             cell.setPersonStatus(RebelParam.EMPTY_SLOT);

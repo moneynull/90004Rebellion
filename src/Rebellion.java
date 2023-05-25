@@ -1,3 +1,5 @@
+import java.util.Collections;
+
 public class Rebellion {
     public static void main(String[] args) throws Exception {
         //initialModel();
@@ -21,16 +23,20 @@ public class Rebellion {
     }
 
     public static void modelThread(){
-        if(RebelParam.MOVEMENT)
-            RebelMap.personList.forEach(p->{
-                if(!p.getPersonStatus().equals(RebelParam.AGENT_JAILED))
-                    p.randomMove();
-            });
-        else
-            RebelMap.personList.forEach(p->{ if(p instanceof Cop) p.randomMove();});
+        RebelMap.personList.forEach(p->{
+            if(!p.getPersonStatus().equals(RebelParam.AGENT_JAILED)){
+                if(RebelParam.MOVEMENT) p.randomMove();
+                else if(p instanceof Cop) p.randomMove();
+            }
+            if(p instanceof Agent)((Agent) p).determineBehaviour();
+            if(p instanceof Cop)((Cop) p).enforce();
+            if(p instanceof Agent)((Agent) p).jailByTurn();
 
-        RebelMap.personList.forEach(p->{if(p instanceof Agent)((Agent) p).determineBehaviour();});
-        RebelMap.personList.forEach(p->{if(p instanceof Cop)((Cop) p).enforce();});
-        RebelMap.personList.forEach(p->{if(p instanceof Agent)((Agent) p).jailByTurn();});
+        });
+//        RebelMap.personList.forEach(Person::randomMove);
+//        RebelMap.personList.forEach(p->{if(p instanceof Agent)((Agent) p).determineBehaviour();});
+//        RebelMap.personList.forEach(p->{if(p instanceof Cop)((Cop) p).enforce();});
+//        RebelMap.personList.forEach(p->{if(p instanceof Agent)((Agent) p).jailByTurn();});
+        Collections.shuffle(RebelMap.personList);
     }
 }

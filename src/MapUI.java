@@ -114,6 +114,7 @@ public class MapUI extends JFrame {
             RebelParam.INITIAL_AGENT_DENSITY=Double.parseDouble(t2.getText());
             RebelParam.VISION=Integer.parseInt(t3.getText());
             RebelParam.GOVERNMENT_LEGITIMACY=Double.parseDouble(t4.getText());
+            System.out.println(RebelParam.GOVERNMENT_LEGITIMACY);
             RebelParam.MAX_JAIL_TERM=Integer.parseInt(t5.getText());
             RebelParam.MOVEMENT=buttonGroup.getSelection().isSelected();
             RebelParam.UI_UPDATE_RATE=Integer.parseInt(t9.getText());
@@ -130,6 +131,7 @@ public class MapUI extends JFrame {
                 );
             else{
                 Rebellion.initialModel();
+                System.out.println(RebelParam.GOVERNMENT_LEGITIMACY);
                 monitor.initMonitor();
                 runTurn=0;
                 paintMap(grid);
@@ -137,7 +139,10 @@ public class MapUI extends JFrame {
 
         });
 
-        b2.addActionListener(e -> go=!go);
+        b2.addActionListener(e -> {
+            go=!go;
+            System.out.println(RebelParam.GOVERNMENT_LEGITIMACY);
+        });
 
         b4.addActionListener(e -> {
             go = false;
@@ -156,6 +161,7 @@ public class MapUI extends JFrame {
                         t8.setText(String.valueOf(monitor.activeNum));
                         Rebellion.modelThread();
                         runTurn++;
+                        if(runTurn==RebelParam.MAX_TURN) {go=false;monitor.exportDataToCSV(runTurn);}
                         paintMap(grid);
                     }
 

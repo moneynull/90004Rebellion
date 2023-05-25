@@ -37,7 +37,7 @@ public class Agent extends Person{
 
     public void determineBehaviour(){
         if(jailTerm<=0){
-            if(grievance()-riskAversion*arrestProbability()>RebelParam.THRESHOLD){
+            if((grievance()-riskAversion*arrestProbability())>RebelParam.THRESHOLD){
                 this.setPersonStatus(RebelParam.AGENT_ACTIVE);
                 this.getCell().setPersonStatus(this.getPersonStatus());
             }
@@ -65,11 +65,19 @@ public class Agent extends Person{
             }
         }
 
-        if(copsInVision==0) copsInVision=1;
-        //if(rebelsInVision==0) rebelsInVision=1600;
+        if(RebelParam.VISION<6) rebelsInVision+=1;
+        else if(copsInVision==0) copsInVision=1;
+
+//        if(copsInVision==0) {
+//            copsInVision=1;
+//            if(RebelParam.VISION<=4){
+//                rebelsInVision=RebelMap.agentNum-(RebelParam.VISION)*rebelsInVision;
+//            }
+//        }
+
 
         // calculate estimated arrest probability
-        return 1 - exp(-RebelParam.K * floor(copsInVision / rebelsInVision));
+        return 1 - exp(-RebelParam.K * floor((copsInVision) / rebelsInVision));
     }
 
 
