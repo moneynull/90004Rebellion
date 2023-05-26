@@ -3,22 +3,33 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
- * cop spy in agent will catch active agent when at least one cop in vision
+ * @Author Xiang Guo
+ * @date 2023/5/26
+ * @Description
+ * Spy in agent performance identical with agent
+ * But spy in agent could jail active agent when at least one cop in vision
  */
 public class CopSpyInAgent extends Agent{
     public CopSpyInAgent(double perceivedHardship, double riskAversion, double governmentLegitimacy) {
         super(perceivedHardship, riskAversion, governmentLegitimacy);
     }
 
+    /**
+     * Spy in agent with at least one cop in vision
+     * could enforce and jail one active agent each turn
+     */
     public void spyEnforce(){
         List<String> stringList=this.getCell().getCellsInVision()
                 .stream().map(Cell::getPersonStatus).collect(Collectors.toList());
         if(stringList.contains(RebelParam.COP)){
             enforce();
-            System.out.println("cop spy in agent jailed an agent!");
+            //System.out.println("cop spy in agent jailed an agent!");
         }
     }
 
+    /**
+     * Same with the enforce behavior of Cop
+     */
     public void enforce(){
         Random random=new Random();
         //find rebel cells

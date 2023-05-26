@@ -1,3 +1,9 @@
+/**
+ * @Author Xiang Guo
+ * @date 2023/5/26
+ * @Description
+ * Parameter setting file
+ */
 public class RebelParam {
     /**
      * system param
@@ -17,9 +23,11 @@ public class RebelParam {
     public static int VISION=7;
     public static boolean MOVEMENT=true;
 
-    //extension param
-    public static double SPY_IN_COP_DENSITY=0.02;
-    public static double SPY_IN_AGENT_DENSITY=0.01;
+    /**
+     * extension param
+     */
+    public static double SPY_IN_COP_DENSITY=0.1;
+    public static double SPY_IN_AGENT_DENSITY=0.02;
 
     /**
      * global param

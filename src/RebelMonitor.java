@@ -5,6 +5,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @Author Xiang Guo
+ * @date 2023/5/26
+ * @Description
+ * The RebelMonitor class
+ * Used for monitor and record the output data of agent
+ */
 public class RebelMonitor {
     private List<Integer> activeData=new ArrayList<>();
     private List<Integer> quietData=new ArrayList<>();
@@ -20,6 +27,7 @@ public class RebelMonitor {
         jailedData=new ArrayList<>();
     }
 
+    //monitor and record the number of types of agent
     public void agentsMonitor(List<Person> agents) {
         activeNum = 0;
         quietNum = 0;
@@ -37,6 +45,7 @@ public class RebelMonitor {
         jailedData.add(jailedNum);
     }
 
+    //Export the record data to csv file for each run
     public void exportDataToCSV(int turn) {
         try {
             String time = ""+LocalDateTime.now().getHour()+"-"
@@ -45,13 +54,17 @@ public class RebelMonitor {
             FileWriter myWriter = new FileWriter("ModelData_"+time+ ".csv");
             myWriter.write(dataToString(turn));
             myWriter.close();
+
+            //notice success
             JOptionPane.showConfirmDialog(
                     null,
                     "Model has been run. Run data saved to csv file.",
                     "Success",
                     JOptionPane.OK_CANCEL_OPTION
             );
+
         } catch (IOException e) {
+            //notice error
             JOptionPane.showConfirmDialog(
                     null,
                     "Save to csv file failed.",
@@ -62,6 +75,7 @@ public class RebelMonitor {
         }
     }
 
+    //format data structure
     public String dataToString(int turn) {
         StringBuilder out = new StringBuilder(COL_HEADERS + "\n");
         for(int i=0;i<turn;i++) {

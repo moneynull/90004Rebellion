@@ -2,6 +2,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+/**
+ * @Author Xiang Guo
+ * @date 2023/5/26
+ * @Description
+ * Basic person class, person could move randomly
+ */
 public class Person {
     private Cell cell;
     private String personStatus;
@@ -22,7 +28,11 @@ public class Person {
         this.personStatus = personStatus;
     }
 
+    /**
+     * Person could move to a cell in vision each turn
+     */
     public void randomMove(){
+        //get available cells
         List<Cell> emptyCells=cell.getCellsInVision().stream()
                 .filter(c->c.getPersonStatus().equals(RebelParam.EMPTY_SLOT))
                 .collect(Collectors.toList());
@@ -35,13 +45,5 @@ public class Person {
             cell=newLoc;
             cell.setPersonStatus(personStatus);
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                "cell=" + cell +
-                ", personStatus='" + personStatus + '\'' +
-                '}';
     }
 }

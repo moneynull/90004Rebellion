@@ -1,10 +1,17 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @Author Xiang Guo
+ * @date 2023/5/26
+ * @Description
+ * The basic cell of rebellion map
+ */
 public class Cell {
     //location points
     private final int cellX;
     private final int cellY;
+    //cell info
     private String personStatus;
     private boolean hasJailed;
 
@@ -44,7 +51,7 @@ public class Cell {
 
 
     /**
-     * using bfs to reset cells in vision
+     * using bfs to foreach cells in vision when initial
      * @param vision
      */
     public void setCellsInVision(int vision){

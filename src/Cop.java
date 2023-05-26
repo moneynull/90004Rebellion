@@ -2,6 +2,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+/**
+ * @Author Xiang Guo
+ * @date 2023/5/26
+ * @Description
+ * The Cop class to simulate the behavior of Cop
+ * Enforce and jail active agent
+ */
+
 public class Cop extends Person{
 
     public Cop() {
@@ -9,6 +17,9 @@ public class Cop extends Person{
         this.setPersonStatus(RebelParam.COP);
     }
 
+    /**
+     * Move and enforce a random active agent in vision each turn
+     */
     public void enforce(){
         Random random=new Random();
         //find rebel cells
@@ -26,6 +37,11 @@ public class Cop extends Person{
                     random.nextInt(RebelParam.MAX_JAIL_TERM));
     }
 
+    /**
+     * Jail and change the status of jailed agent
+     * @param agent
+     * @param jailTerm
+     */
     private void jailAgent(Agent agent,int jailTerm){
         if(jailTerm!=0){
             //change agent status

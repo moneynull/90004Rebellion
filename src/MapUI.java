@@ -3,6 +3,12 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * @Author Xiang Guo
+ * @date 2023/5/26
+ * @Description
+ * Show the model
+ */
 public class MapUI extends JFrame {
     private static final long serialVersionUID = 1L;
     public static RebelMonitor monitor=new RebelMonitor();
@@ -32,6 +38,7 @@ public class MapUI extends JFrame {
             }
         });
 
+        //Panel for input param
         JPanel inputPanel=new JPanel(new GridLayout(2,7));
         JLabel l1=new JLabel("initial-cop-density");
         JTextField t1=new JTextField(String.valueOf(RebelParam.INITIAL_COP_DENSITY),5);
@@ -62,23 +69,17 @@ public class MapUI extends JFrame {
         inputPanel.add(l11);
         inputPanel.add(l12);
 
-
         inputPanel.add(t1);
-
         inputPanel.add(t2);
-
         inputPanel.add(t3);
-
         inputPanel.add(t4);
-
         inputPanel.add(t5);
-
         inputPanel.add(t11);
-
         inputPanel.add(t12);
 
         frame.add(inputPanel,BorderLayout.NORTH);
 
+        //panel for function button
         JPanel buttonPanel=new JPanel();
         JLabel l6=new JLabel("quiet");
         JTextField t6=new JTextField(String.valueOf(monitor.quietNum),5);
@@ -127,6 +128,7 @@ public class MapUI extends JFrame {
         frame.add(grid);
         frame.pack();
 
+        //setup button listener
         b1.addActionListener(e -> {
             RebelParam.INITIAL_COP_DENSITY=Double.parseDouble(t1.getText());
             RebelParam.INITIAL_AGENT_DENSITY=Double.parseDouble(t2.getText());
@@ -157,16 +159,18 @@ public class MapUI extends JFrame {
 
         });
 
+        //go button listener
         b2.addActionListener(e -> {
             go=!go;
         });
 
+        //save button listener
         b4.addActionListener(e -> {
             go = false;
             monitor.exportDataToCSV(runTurn);
         });
 
-
+        //main thread
         UIThread = new Thread() {
             public void run() {
                 super.run();
@@ -178,6 +182,7 @@ public class MapUI extends JFrame {
                         t8.setText(String.valueOf(monitor.activeNum));
                         Rebellion.modelThread();
                         runTurn++;
+                        //auto save after Max turn running
                         if(runTurn==RebelParam.MAX_TURN) {go=false;monitor.exportDataToCSV(runTurn);}
                         paintMap(grid);
                     }
@@ -197,6 +202,7 @@ public class MapUI extends JFrame {
         frame.setVisible(true);
     }
 
+    //paint the map with cell info
     private void paintMap(JPanel grid){
         grid.removeAll();
         for (int i = 0; i < RebelParam.MAP_COL; i++) {
