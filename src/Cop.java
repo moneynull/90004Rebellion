@@ -20,18 +20,18 @@ public class Cop extends Person{
                 .collect(Collectors.toList());
 
         //find rebel agents based on cells
-        if(rebelList.size()>0)
+        if(rebelList.size()>0&&RebelParam.MAX_JAIL_TERM>0)
             //jail one random agent
-            jailAgent((Agent) rebelList.get(random.nextInt(rebelList.size())));
+            jailAgent((Agent) rebelList.get(random.nextInt(rebelList.size())),
+                    random.nextInt(RebelParam.MAX_JAIL_TERM));
     }
 
-    private void jailAgent(Agent agent){
-        if(RebelParam.MAX_JAIL_TERM!=0){
-            Random random=new Random();
+    private void jailAgent(Agent agent,int jailTerm){
+        if(jailTerm!=0){
             //change agent status
             agent.setPersonStatus(RebelParam.AGENT_JAILED);
 
-            agent.setJailTerm(random.nextInt(RebelParam.MAX_JAIL_TERM));
+            agent.setJailTerm(jailTerm);
 
             //reset jailed agent cell
             this.getCell().setPersonStatus(RebelParam.EMPTY_SLOT);

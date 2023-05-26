@@ -34,6 +34,7 @@ public class Rebellion {
             if(p instanceof Cop)((Cop) p).enforce();
             if(p instanceof Agent)((Agent) p).jailByTurn();
 
+
         });
 
         RebelMap.personList.forEach(p->{
