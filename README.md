@@ -1,4 +1,6 @@
 # 90004Rebellion
 ![image]
-<h>Setup and Run
+## Setup and Run
+java -d Rebellion.java
+java Rebellion
 
