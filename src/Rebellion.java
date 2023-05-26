@@ -31,7 +31,13 @@ public class Rebellion {
             }
             else if(p instanceof Cop) p.randomMove();
             if(p instanceof Agent)((Agent) p).determineBehaviour();
+            if(p instanceof CopSpyInAgent) ((CopSpyInAgent) p).determineBehaviour();
             if(p instanceof Cop)((Cop) p).enforce();
+
+            if(p instanceof AgentSpyInCop) ((AgentSpyInCop) p).releaseAgent();
+
+            if(p instanceof CopSpyInAgent)((CopSpyInAgent) p).spyEnforce();
+
             if(p instanceof Agent)((Agent) p).jailByTurn();
 
 

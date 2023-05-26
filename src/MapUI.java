@@ -32,7 +32,7 @@ public class MapUI extends JFrame {
             }
         });
 
-        JPanel inputPanel=new JPanel();
+        JPanel inputPanel=new JPanel(new GridLayout(2,7));
         JLabel l1=new JLabel("initial-cop-density");
         JTextField t1=new JTextField(String.valueOf(RebelParam.INITIAL_COP_DENSITY),5);
 
@@ -42,22 +42,40 @@ public class MapUI extends JFrame {
         JLabel l3=new JLabel("vision");
         JTextField t3=new JTextField(String.valueOf(RebelParam.VISION),5);
 
-        JLabel l4=new JLabel("government-legitimacy");
+        JLabel l4=new JLabel("govern-legitimacy");
         JTextField t4=new JTextField(String.valueOf(RebelParam.GOVERNMENT_LEGITIMACY),5);
 
         JLabel l5=new JLabel("max-jail-term");
         JTextField t5=new JTextField(String.valueOf(RebelParam.MAX_JAIL_TERM),5);
 
+        JLabel l11=new JLabel("spy_in_cop_density");
+        JTextField t11=new JTextField(String.valueOf(RebelParam.SPY_IN_COP_DENSITY),5);
+
+        JLabel l12=new JLabel("spy_in_agent_density");
+        JTextField t12=new JTextField(String.valueOf(RebelParam.SPY_IN_AGENT_DENSITY),5);
+
         inputPanel.add(l1);
-        inputPanel.add(t1);
         inputPanel.add(l2);
-        inputPanel.add(t2);
         inputPanel.add(l3);
-        inputPanel.add(t3);
         inputPanel.add(l4);
-        inputPanel.add(t4);
         inputPanel.add(l5);
+        inputPanel.add(l11);
+        inputPanel.add(l12);
+
+
+        inputPanel.add(t1);
+
+        inputPanel.add(t2);
+
+        inputPanel.add(t3);
+
+        inputPanel.add(t4);
+
         inputPanel.add(t5);
+
+        inputPanel.add(t11);
+
+        inputPanel.add(t12);
 
         frame.add(inputPanel,BorderLayout.NORTH);
 
@@ -114,10 +132,11 @@ public class MapUI extends JFrame {
             RebelParam.INITIAL_AGENT_DENSITY=Double.parseDouble(t2.getText());
             RebelParam.VISION=Integer.parseInt(t3.getText());
             RebelParam.GOVERNMENT_LEGITIMACY=Double.parseDouble(t4.getText());
-            System.out.println(RebelParam.GOVERNMENT_LEGITIMACY);
             RebelParam.MAX_JAIL_TERM=Integer.parseInt(t5.getText());
             RebelParam.MOVEMENT=buttonGroup.getSelection().isSelected();
             RebelParam.UI_UPDATE_RATE=Integer.parseInt(t9.getText());
+            RebelParam.SPY_IN_COP_DENSITY=Double.parseDouble(t11.getText());
+            RebelParam.SPY_IN_AGENT_DENSITY=Double.parseDouble(t12.getText());
             t6.setText(String.valueOf(0));
             t7.setText(String.valueOf(0));
             t8.setText(String.valueOf(0));

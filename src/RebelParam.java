@@ -17,6 +17,10 @@ public class RebelParam {
     public static int VISION=7;
     public static boolean MOVEMENT=true;
 
+    //extension param
+    public static double SPY_IN_COP_DENSITY=0.02;
+    public static double SPY_IN_AGENT_DENSITY=0.01;
+
     /**
      * global param
      */
