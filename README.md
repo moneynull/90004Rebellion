@@ -1,6 +1,6 @@
 # 90004Rebellion
 ## Setup and Run
-1. Setup: java -d Rebellion.java </br>
+1. Setup: javac Rebellion.java </br>
 2. Run:   java Rebellion
 ## UI intro
 ![image](https://github.com/moneynull/90004Rebellion/blob/main/UI.png) </br>
