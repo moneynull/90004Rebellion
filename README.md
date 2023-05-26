@@ -10,4 +10,4 @@ Identical with Netlogo, change 'spy_in_cop_density' and 'spy_in_agent_density' t
 2. Agent group has spy to can jail agent if at least cop in vision.
 3. The both two spy density cannot larger than 1.
 ## Class Diagram
-![image]()
+![image](https://github.com/moneynull/90004Rebellion/blob/main/rebelDiagram.png)
